@@ -14,5 +14,6 @@ main PROC
 	CALL DumpRegs
 
 	EXIT
+
 main ENDP
 END main
