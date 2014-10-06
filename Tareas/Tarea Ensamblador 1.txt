@@ -1,0 +1,71 @@
+Tarea Ensamblador 1
+
+.data
+
+byteVal BYTE 1, 2, 3, 4
+wordVal WORD 1000h, 2000h, 3000h, 4000h
+dwordVal DWORD 12345678h, 34567890h
+aString BYTE "ABCDEFG", 0
+
+1.
+
+a. mov ax, byteVal
+b. mov dx, wordVal
+c. mov ecx, dwordVal
+d. mov si, aString
+e. mov esi, offset aString
+f. mov al, byteVal
+
+2. 
+
+a. mov eax, offset byteVal
+b. mov dx, wordVal+2
+c. mov ecx, offset dwordVal
+d. mov si, dwordVal
+e. mov esi, offset aString+2
+f. mov al, offset byteVal+1
+
+3.
+
+a. mov eax, offset byteVal
+b. mov dx, wordVal
+c. mov ecx, dwordVal
+d. mov esi, offset wordVal
+e. mov esi, offset aString
+f. mov al, aString+2
+g. mov edi, offset dwordVal
+
+4.
+
+a. mov eax, offset byteVal+2
+b. mov dx, wordVal+4
+c. mov ecx, dwordVal+4
+d. mov esi, offset wordVal+4
+e. mov esi, offset aString-1
+
+
+.data
+
+byteVal BYTE 2 DUP(0FFh), 2, "XY"
+wordVal WORD 2 DUP(6), 2
+dwordVal DWORD 8, 7, 6, 5
+dwordValSiz WORD ($ - dwordVal)
+ptrByte DWORD byteVal
+ptrWord DWORD wordVal
+
+5.
+
+a. mov eax, offset wordVal
+b. mov dx, wordVal+4
+c. mov ecx, dwordVal+4
+d. mov si, dwordValSiz
+e. mov al, byteVal+4
+
+6.
+
+a. mov ax, dwordVal+2
+b. mov dx, wordVal-2
+c. mov eax, ptrByte
+d. mov esi, ptrWord
+e. mov edi, offset dwordVal+2
+
