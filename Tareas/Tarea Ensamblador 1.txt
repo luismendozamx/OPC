@@ -1,4 +1,5 @@
 Tarea Ensamblador 1
+Luis Enrique Mendoza - 124847
 
 .data
 
@@ -9,39 +10,39 @@ aString BYTE "ABCDEFG", 0
 
 1.
 
-a. mov ax, byteVal
-b. mov dx, wordVal
-c. mov ecx, dwordVal
-d. mov si, aString
-e. mov esi, offset aString
-f. mov al, byteVal
+a. mov ax, byteVal - Invalido (ax 16 bits)
+b. mov dx, wordVal - Valido
+c. mov ecx, dwordVal - Valido 
+d. mov si, aString - Invalido
+e. mov esi, offset aString - Valido
+f. mov al, byteVal - Valido
 
 2. 
 
-a. mov eax, offset byteVal
-b. mov dx, wordVal+2
-c. mov ecx, offset dwordVal
-d. mov si, dwordVal
-e. mov esi, offset aString+2
-f. mov al, offset byteVal+1
+a. mov eax, offset byteVal - Valido
+b. mov dx, wordVal+2 - Valido
+c. mov ecx, offset dwordVal - Valido
+d. mov si, dwordVal - Invalido (si es de 16 bits)
+e. mov esi, offset aString+2 - Valido
+f. mov al, offset byteVal+1 - Invalido
 
 3.
 
-a. mov eax, offset byteVal
-b. mov dx, wordVal
-c. mov ecx, dwordVal
-d. mov esi, offset wordVal
-e. mov esi, offset aString
-f. mov al, aString+2
-g. mov edi, offset dwordVal
+a. mov eax, offset byteVal - 00000000h
+b. mov dx, wordVal - 1000h
+c. mov ecx, dwordVal - 12345678h
+d. mov esi, offset wordVal - 00000004h
+e. mov esi, offset aString - 00000014h
+f. mov al, aString+2 - 'C'
+g. mov edi, offset dwordVal - 0000000Ch
 
 4.
 
-a. mov eax, offset byteVal+2
-b. mov dx, wordVal+4
-c. mov ecx, dwordVal+4
-d. mov esi, offset wordVal+4
-e. mov esi, offset aString-1
+a. mov eax, offset byteVal+2 - 00000002h
+b. mov dx, wordVal+4 - 3000h
+c. mov ecx, dwordVal+4 - 34567890h
+d. mov esi, offset wordVal+4 - 00000008h
+e. mov esi, offset aString-1 - 00000013h
 
 
 .data
@@ -55,17 +56,17 @@ ptrWord DWORD wordVal
 
 5.
 
-a. mov eax, offset wordVal
-b. mov dx, wordVal+4
-c. mov ecx, dwordVal+4
-d. mov si, dwordValSiz
-e. mov al, byteVal+4
+a. mov eax, offset wordVal - 00000006h
+b. mov dx, wordVal+4 - 0002h
+c. mov ecx, dwordVal+4 - 00000007h
+d. mov si, dwordValSiz - 0010h
+e. mov al, byteVal+4 - 'X'
 
 6.
 
-a. mov ax, dwordVal+2
-b. mov dx, wordVal-2
-c. mov eax, ptrByte
-d. mov esi, ptrWord
-e. mov edi, offset dwordVal+2
+a. mov ax, dwordVal+2 - I
+b. mov dx, wordVal-2 - ?
+c. mov eax, ptrByte - 00000000h
+d. mov esi, ptrWord - 00000006h
+e. mov edi, offset dwordVal+2 - 0000000Eh
 
