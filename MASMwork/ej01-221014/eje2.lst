@@ -1,11 +1,8 @@
-Microsoft (R) Macro Assembler Version 6.15.8803		    10/27/14 07:23:39
-Ejercicio 1             (ej1.asm)			     Page 1 - 1
+Microsoft (R) Macro Assembler Version 6.15.8803		    10/27/14 08:17:19
+eje2           (eje2.asm)				     Page 1 - 1
 
 
-				TITLE Ejercicio 1             (ej1.asm)
-
-				; This program adds and subtracts 32-bit integers.
-
+				TITLE eje2           (eje2.asm)
 
 				INCLUDE Irvine32.inc
 			      C ; Include file for Irvine32.lib             (Irvine32.inc)
@@ -27,100 +24,86 @@ Ejercicio 1             (ej1.asm)			     Page 1 - 1
 			      C 
 
  00000000			.DATA
-
- 00000000 54 65 63 6C 65	line1 BYTE  "Teclee el dato N: ",0 
+ 00000000 54 65 63 6C 65	      line1  BYTE  "Teclee el dato N: ", 0
 	   65 20 65 6C 20
 	   64 61 74 6F 20
 	   4E 3A 20 00
- 00000013 52 65 73 75 6C	line2 BYTE  "Resultado: ",0 
-	   74 61 64 6F 3A
+ 00000013 54 65 72 6D 69	      line2  BYTE  "Termino ", 0
+	   6E 6F 20 00
+ 0000001C 54 4F 54 41 4C	      line3  BYTE  "TOTAL:", 0
+	   3A 00
+ 00000023 3A 20 00		      line4  BYTE  ": ", 0
+ 00000026 20 20 20 20 20	      line5  BYTE  "           ", 0
+	   20 20 20 20 20
 	   20 00
- 0000001F 41 64 69 6F 73	line3 BYTE  "Adios",0 
-	   00
- 00000025 54 65 63 6C 65	line4 BYTE  "Teclee el ",0
-	   65 20 65 6C 20
-	   00
- 00000030 20 73 61 6C 61	line6 BYTE  " salario: ",0
-	   72 69 6F 3A 20
-	   00
- 0000003B 4D 41 59 4F 52	line5 BYTE  "MAYOR: ",0
-	   3A 20 00
- 00000043 20 79 20 65 73	line7 BYTE " y esta en la posicion",0
-	   74 61 20 65 6E
-	   20 6C 61 20 70
-	   6F 73 69 63 69
-	   6F 6E 00
- 0000005A 00000000		res   DWORD 0
- 0000005E 00000000		mayor DWORD 0
- 00000062 00000000		cont  DWORD 0
- 00000066 00000000		cont2 DWORD ?
+
+ 00000032 FFFFFFFF			 sig  SDWORD -1
+ 00000036 00000000			total  SDWORD 0
+ 0000003A 00000003			val	SDWORD 3
+ 0000003E 00000000			num     SDWORD 0
+ 00000042 00000000			aux     SDWORD 0
 
 
-
+				 
  00000000			.CODE
  00000000			main PROC
- 00000000  BA 00000000 R	N:	MOV   EDX, OFFSET line1
- 00000005  E8 00000000 E		CALL  WriteString
- 0000000A  E8 00000000 E		CALL  ReadInt
-
-
- 0000000F  8B C8			MOV   ECX,EAX
- 00000011  78 ED			JS N
- 00000013  74 EB			JZ N
-
- 00000015			inWHILE:
- 00000015  3B 0D 00000062 R			CMP ECX, cont
- 0000001B  74 48				JE   outWHILE
- 0000001D  FF 05 00000062 R			INC cont
- 00000023  BA 00000025 R			MOV   EDX, OFFSET line4	
- 00000028  E8 00000000 E			CALL  WriteString
- 0000002D  A1 00000062 R			MOV	EAX,cont
- 00000032  E8 00000000 E			CALL WriteInt
- 00000037  BA 00000030 R			MOV   EDX, OFFSET line6	
- 0000003C  E8 00000000 E			CALL  WriteString
- 00000041  E8 00000000 E			CALL  ReadInt
- 00000046  01 05 0000005A R			ADD   res,EAX
-
-
- 0000004C  3B 05 0000005E R			CMP   EAX,mayor
- 00000052  76 0F				JNA    X
- 00000054  A3 0000005E R			MOV mayor,EAX
- 00000059  A1 00000062 R			MOV EAX,cont
- 0000005E  A3 00000066 R			MOV cont2, EAX
-
- 00000063			X:	
+					;PEDIR VALOR DE N
+ 00000000  E8 00000000 E		CALL Crlf
+ 00000005  BA 00000000 R		MOV  EDX, OFFSET line1
+ 0000000A  E8 00000000 E		CALL  WriteString	;"Teclee el dato N: "
+ 0000000F  E8 00000000 E		CALL  ReadInt
 
 					
+					;CICLO
+ 00000014  A3 00000042 R		MOV   aux,EAX	
+
+ 00000019  BA 00000013 R	L1:	MOV  EDX, OFFSET line2 
+ 0000001E  E8 00000000 E		CALL  WriteString 	;"siguiente termino:"
+ 00000023  83 05 0000003E R		ADD   num,1 
+	   01
+ 0000002A  A1 0000003E R		MOV EAX,num
+ 0000002F  E8 00000000 E		CALL  WriteInt
+
+ 00000034  BA 00000023 R		MOV  EDX, OFFSET line4 
+ 00000039  E8 00000000 E		CALL  WriteString 
 					
- 00000063  75 B0			JNE inWHILE
- 00000065			outWHILE:
- 00000065  BA 00000013 R		MOV   EDX, OFFSET line2
- 0000006A  E8 00000000 E		CALL  WriteString
- 0000006F  A1 0000005A R		MOV   EAX,res
- 00000074  E8 00000000 E		CALL  WriteInt
- 00000079  E8 00000000 E		CALL Crlf
+ 0000003E  A1 00000032 R		MOV EAX, sig
+ 00000043  E8 00000000 E		CALL  WriteInt		;Valor del termino que se suma
 
- 0000007E  BA 0000003B R		MOV   EDX, OFFSET line5
- 00000083  E8 00000000 E		CALL  WriteString
- 00000088  A1 0000005E R		MOV   EAX,mayor
- 0000008D  E8 00000000 E		CALL  WriteInt
- 00000092  BA 00000043 R		MOV   EDX, OFFSET line7
- 00000097  E8 00000000 E		CALL  WriteString
- 0000009C  A1 00000066 R		MOV   EAX,cont2
- 000000A1  E8 00000000 E		CALL  WriteInt
- 000000A6  E8 00000000 E		CALL Crlf
+ 00000048  BA 00000026 R		MOV  EDX, OFFSET line5 
+ 0000004D  E8 00000000 E		CALL  WriteString 
 
- 000000AB  BA 0000001F R		MOV   EDX, OFFSET line3
- 000000B0  E8 00000000 E		CALL  WriteString
-
+ 00000052  F7 C1 00000001		TEST  ECX,1b
+ 00000058  74 05			JZ   S1		;si es non brinca
+ 0000005A  E8 00000000 E		CALL Crlf
+ 0000005F			S1:
+ 0000005F  01 05 00000036 R		ADD total,EAX
+ 00000065  F7 D8			NEG EAX			;Negar el ultimo termino sumado
+ 00000067  03 05 0000003A R		ADD EAX, val		;aumentar la magnitud del numero sumado en 3
+ 0000006D  A3 00000032 R		MOV sig, EAX
+ 00000072  F7 1D 0000003A R		NEG val			;alternar el signo del 3 para poder sumar
+					
+ 00000078  FF 0D 00000042 R		DEC		aux
+ 0000007E  FF 0D 00000042 R		DEC		aux
+ 00000084  F7 05 00000042 R		TEST   aux,1b
+	   00000001
+ 0000008E  74 89			JE    L1
+					
+ 00000090  E8 00000000 E		CALL Crlf
+ 00000095  BA 0000001C R		MOV  EDX, OFFSET line3
+ 0000009A  E8 00000000 E		CALL  WriteString
+ 0000009F  A1 00000036 R		MOV EAX, total
+ 000000A4  E8 00000000 E		CALL  WriteInt
+					
 
 					EXIT
- 000000B5  6A 00	   *	    push   +000000000h
- 000000B7  E8 00000000 E   *	    call   ExitProcess
- 000000BC			main ENDP
+ 000000A9  6A 00	   *	    push   +000000000h
+ 000000AB  E8 00000000 E   *	    call   ExitProcess
+
+ 000000B0			main ENDP
 				END main
-Microsoft (R) Macro Assembler Version 6.15.8803		    10/27/14 07:23:39
-Ejercicio 1             (ej1.asm)			     Symbols 2 - 1
+Microsoft (R) Macro Assembler Version 6.15.8803		    10/27/14 08:17:19
+eje2           (eje2.asm)				     Symbols 2 - 1
 
 
 
@@ -179,8 +162,8 @@ Segments and Groups:
 
 FLAT . . . . . . . . . . . . . .	GROUP
 STACK  . . . . . . . . . . . . .	32 Bit	 00001000 DWord	  Stack	  'STACK'	 
-_DATA  . . . . . . . . . . . . .	32 Bit	 0000006A DWord	  Public  'DATA'	
-_TEXT  . . . . . . . . . . . . .	32 Bit	 000000BC DWord	  Public  'CODE'	
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000046 DWord	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 000000B0 DWord	  Public  'CODE'	
 
 
 Procedures,  parameters and locals:
@@ -264,11 +247,9 @@ WriteHexB  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External
 WriteHex . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 WriteInt . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 WriteString  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
-main . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 000000BC Public STDCALL
-  N  . . . . . . . . . . . . . .	L Near	 00000000 _TEXT	
-  inWHILE  . . . . . . . . . . .	L Near	 00000015 _TEXT	
-  X  . . . . . . . . . . . . . .	L Near	 00000063 _TEXT	
-  outWHILE . . . . . . . . . . .	L Near	 00000065 _TEXT	
+main . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 000000B0 Public STDCALL
+  L1 . . . . . . . . . . . . . .	L Near	 00000019 _TEXT	
+  S1 . . . . . . . . . . . . . .	L Near	 0000005F _TEXT	
 wsprintfA  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
 
 
@@ -434,11 +415,10 @@ VK_UP  . . . . . . . . . . . . .	Number	 00000026h
 WINDOW_BUFFER_SIZE_EVENT . . . .	Number	 00000004h   
 WriteConsoleOutputCharacter  . .	Text   	 WriteConsoleOutputCharacterA
 WriteConsole . . . . . . . . . .	Text   	 WriteConsoleA
+aux  . . . . . . . . . . . . . .	DWord	 00000042 _DATA	
 black  . . . . . . . . . . . . .	Number	 00000000h   
 blue . . . . . . . . . . . . . .	Number	 00000001h   
 brown  . . . . . . . . . . . . .	Number	 00000006h   
-cont2  . . . . . . . . . . . . .	DWord	 00000066 _DATA	
-cont . . . . . . . . . . . . . .	DWord	 00000062 _DATA	
 cyan . . . . . . . . . . . . . .	Number	 00000003h   
 exit . . . . . . . . . . . . . .	Text   	 INVOKE ExitProcess,0
 gray . . . . . . . . . . . . . .	Number	 00000008h   
@@ -451,15 +431,15 @@ lightMagenta . . . . . . . . . .	Number	 0000000Dh
 lightRed . . . . . . . . . . . .	Number	 0000000Ch   
 line1  . . . . . . . . . . . . .	Byte	 00000000 _DATA	
 line2  . . . . . . . . . . . . .	Byte	 00000013 _DATA	
-line3  . . . . . . . . . . . . .	Byte	 0000001F _DATA	
-line4  . . . . . . . . . . . . .	Byte	 00000025 _DATA	
-line5  . . . . . . . . . . . . .	Byte	 0000003B _DATA	
-line6  . . . . . . . . . . . . .	Byte	 00000030 _DATA	
-line7  . . . . . . . . . . . . .	Byte	 00000043 _DATA	
+line3  . . . . . . . . . . . . .	Byte	 0000001C _DATA	
+line4  . . . . . . . . . . . . .	Byte	 00000023 _DATA	
+line5  . . . . . . . . . . . . .	Byte	 00000026 _DATA	
 magenta  . . . . . . . . . . . .	Number	 00000005h   
-mayor  . . . . . . . . . . . . .	DWord	 0000005E _DATA	
+num  . . . . . . . . . . . . . .	DWord	 0000003E _DATA	
 red  . . . . . . . . . . . . . .	Number	 00000004h   
-res  . . . . . . . . . . . . . .	DWord	 0000005A _DATA	
+sig  . . . . . . . . . . . . . .	DWord	 00000032 _DATA	
+total  . . . . . . . . . . . . .	DWord	 00000036 _DATA	
+val  . . . . . . . . . . . . . .	DWord	 0000003A _DATA	
 white  . . . . . . . . . . . . .	Number	 0000000Fh   
 wsprintf . . . . . . . . . . . .	Text   	 wsprintfA
 yellow . . . . . . . . . . . . .	Number	 0000000Eh   
