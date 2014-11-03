@@ -54,10 +54,9 @@ S1:
 	MOV sig, EAX
 	NEG val			;alternar el signo del 3 para poder sumar
 	
-	DEC		aux
-	DEC		aux
-	TEST   aux,1b
-	JE    L1
+	
+	CMP   aux,0
+	JG    L1
 	
 	CALL Crlf
 	MOV  EDX, OFFSET line3
