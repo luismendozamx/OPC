@@ -15,14 +15,16 @@ INCLUDE Irvine32.inc
 .CODE
 main PROC
 	;pedir datos (m y n)
-M:	MOV  EDX, OFFSET line1
+M:	
+		MOV  EDX, OFFSET line1
 	CALL  WriteString		;Teclee el dato M: 
 	CALL  ReadInt
 	MOV	valM, EAX
 	JS M
 	JZ W
 
-N:	MOV  EDX, OFFSET line2
+N:	
+	MOV  EDX, OFFSET line2
 	CALL  WriteString		;Teclee el dato N:
 	CALL  ReadInt
 	MOV	valN, EAX
@@ -36,12 +38,14 @@ N:	MOV  EDX, OFFSET line2
 	XCHG EAX, valM
 	XCHG EAX, valN
 	
-X:	MOV   ECX,valM
+X:	
+	MOV   ECX,valM
 	MOV EAX,0
 	MOV EDX, OFFSET line4
 
 	;ciclo de duracion M
-L1:	CALL Crlf
+L1:	
+	CALL Crlf
 	CALL WriteString
 	ADD EAX, valN
 	CALL WriteInt
@@ -52,7 +56,8 @@ Y:
 	CALL  WriteString		;"M*N= "
 	CALL  WriteInt
 	JMP Z
-W:	MOV  EDX, OFFSET line2
+W:	
+	MOV  EDX, OFFSET line2
 	CALL  WriteString		;Teclee el dato N:
 	CALL  ReadInt
 	MOV	EAX,0

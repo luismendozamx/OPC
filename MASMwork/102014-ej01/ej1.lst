@@ -1,4 +1,4 @@
-Microsoft (R) Macro Assembler Version 6.15.8803		    10/22/14 08:33:27
+Microsoft (R) Macro Assembler Version 6.15.8803		    11/05/14 01:33:45
 Ejercicio 1             (ej1.asm)			     Page 1 - 1
 
 
@@ -62,42 +62,41 @@ Ejercicio 1             (ej1.asm)			     Page 1 - 1
  00000013  74 EB			JZ N
 
  00000015			L1:
- 00000015  BA 00000025 R	S:		MOV   EDX, OFFSET line4	
+ 00000015  BA 00000025 R			MOV   EDX, OFFSET line4	
  0000001A  E8 00000000 E			CALL  WriteString
  0000001F  E8 00000000 E			CALL  ReadInt
  00000024  01 05 00000047 R			ADD   res,EAX
- 0000002A  78 E9				JS S
- 0000002C  74 E7				JZ S
 
-						CPM   EAX,mayor
-ej1.asm(39) : error A2008: syntax error : eax
- 0000002E  77 05				JA    X
- 00000030  A3 0000004B R			MOV mayor,EAX
- 00000035			X:
- 00000035  E2 DE			loop L1
 
- 00000037  BA 00000013 R		MOV   EDX, OFFSET line2
- 0000003C  E8 00000000 E		CALL  WriteString
- 00000041  A1 00000047 R		MOV   EAX,res
- 00000046  E8 00000000 E		CALL  WriteInt
- 0000004B  E8 00000000 E		CALL Crlf
+						CPM   AL,mayor
+ej1.asm(38) : error A2008: syntax error : al
+ 0000002A  77 05				JA    X
+ 0000002C  A3 0000004B R			MOV mayor,EAX
+ 00000031			X:
+ 00000031  E2 E2			loop L1
 
- 00000050  BA 0000003F R		MOV   EDX, OFFSET line5
- 00000055  E8 00000000 E		CALL  WriteString
- 0000005A  A1 0000004B R		MOV   EAX,mayor
- 0000005F  E8 00000000 E		CALL  WriteInt
- 00000064  E8 00000000 E		CALL Crlf
+ 00000033  BA 00000013 R		MOV   EDX, OFFSET line2
+ 00000038  E8 00000000 E		CALL  WriteString
+ 0000003D  A1 00000047 R		MOV   EAX,res
+ 00000042  E8 00000000 E		CALL  WriteInt
+ 00000047  E8 00000000 E		CALL Crlf
 
- 00000069  BA 0000001F R		MOV   EDX, OFFSET line3
- 0000006E  E8 00000000 E		CALL  WriteString
+ 0000004C  BA 0000003F R		MOV   EDX, OFFSET line5
+ 00000051  E8 00000000 E		CALL  WriteString
+ 00000056  A1 0000004B R		MOV   EAX,mayor
+ 0000005B  E8 00000000 E		CALL  WriteInt
+ 00000060  E8 00000000 E		CALL Crlf
+
+ 00000065  BA 0000001F R		MOV   EDX, OFFSET line3
+ 0000006A  E8 00000000 E		CALL  WriteString
 
 
 					EXIT
- 00000073  6A 00	   *	    push   +000000000h
- 00000075  E8 00000000 E   *	    call   ExitProcess
- 0000007A			main ENDP
+ 0000006F  6A 00	   *	    push   +000000000h
+ 00000071  E8 00000000 E   *	    call   ExitProcess
+ 00000076			main ENDP
 				END main
-Microsoft (R) Macro Assembler Version 6.15.8803		    10/22/14 08:33:27
+Microsoft (R) Macro Assembler Version 6.15.8803		    11/05/14 01:33:45
 Ejercicio 1             (ej1.asm)			     Symbols 2 - 1
 
 
@@ -158,7 +157,7 @@ Segments and Groups:
 FLAT . . . . . . . . . . . . . .	GROUP
 STACK  . . . . . . . . . . . . .	32 Bit	 00001000 DWord	  Stack	  'STACK'	 
 _DATA  . . . . . . . . . . . . .	32 Bit	 0000004F DWord	  Public  'DATA'	
-_TEXT  . . . . . . . . . . . . .	32 Bit	 0000007A DWord	  Public  'CODE'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 00000076 DWord	  Public  'CODE'	
 
 
 Procedures,  parameters and locals:
@@ -242,11 +241,10 @@ WriteHexB  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External
 WriteHex . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 WriteInt . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 WriteString  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
-main . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 0000007A Public STDCALL
+main . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000076 Public STDCALL
   N  . . . . . . . . . . . . . .	L Near	 00000000 _TEXT	
   L1 . . . . . . . . . . . . . .	L Near	 00000015 _TEXT	
-  S  . . . . . . . . . . . . . .	L Near	 00000015 _TEXT	
-  X  . . . . . . . . . . . . . .	L Near	 00000035 _TEXT	
+  X  . . . . . . . . . . . . . .	L Near	 00000031 _TEXT	
 wsprintfA  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
 
 

@@ -21,34 +21,31 @@ cont  DWORD 1
 
 .CODE
 main PROC
-N:	MOV   EDX, OFFSET line1
+N:	
+	MOV   EDX, OFFSET line1
 	CALL  WriteString
 	CALL  ReadInt
-
 
 	MOV   ECX,EAX
 	JS N
 	JZ N
 
 L1:
-		MOV   EDX, OFFSET line4	
-		CALL  WriteString
-		MOV	EAX,cont
-		CALL WriteInt
-		MOV   EDX, OFFSET line6	
-		CALL  WriteString
-		CALL  ReadInt
-		ADD   res,EAX
+	MOV   EDX, OFFSET line4	
+	CALL  WriteString
+	MOV	EAX,cont
+	CALL WriteInt
+	MOV   EDX, OFFSET line6	
+	CALL  WriteString
+	CALL  ReadInt
+	ADD   res,EAX
 
 
-		CMP   EAX,mayor
-		JNA    X
-		MOV mayor,EAX
-
+	CMP   EAX,mayor
+	JNA    X
+	MOV mayor,EAX
 
 X:	
-
-	
 	INC cont
 	loop L1
 

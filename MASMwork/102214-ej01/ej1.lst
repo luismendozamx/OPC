@@ -1,4 +1,4 @@
-Microsoft (R) Macro Assembler Version 6.15.8803		    10/22/14 09:10:53
+Microsoft (R) Macro Assembler Version 6.15.8803		    11/05/14 02:37:59
 Ejercicio 1             (ej1.asm)			     Page 1 - 1
 
 
@@ -53,34 +53,32 @@ Ejercicio 1             (ej1.asm)			     Page 1 - 1
 
  00000000			.CODE
  00000000			main PROC
- 00000000  BA 00000000 R	N:	MOV   EDX, OFFSET line1
+ 00000000			N:	
+ 00000000  BA 00000000 R		MOV   EDX, OFFSET line1
  00000005  E8 00000000 E		CALL  WriteString
  0000000A  E8 00000000 E		CALL  ReadInt
-
 
  0000000F  8B C8			MOV   ECX,EAX
  00000011  78 ED			JS N
  00000013  74 EB			JZ N
 
  00000015			L1:
- 00000015  BA 00000025 R			MOV   EDX, OFFSET line4	
- 0000001A  E8 00000000 E			CALL  WriteString
- 0000001F  A1 0000004B R			MOV	EAX,cont
- 00000024  E8 00000000 E			CALL WriteInt
- 00000029  BA 00000030 R			MOV   EDX, OFFSET line6	
- 0000002E  E8 00000000 E			CALL  WriteString
- 00000033  E8 00000000 E			CALL  ReadInt
- 00000038  01 05 00000043 R			ADD   res,EAX
+ 00000015  BA 00000025 R		MOV   EDX, OFFSET line4	
+ 0000001A  E8 00000000 E		CALL  WriteString
+ 0000001F  A1 0000004B R		MOV	EAX,cont
+ 00000024  E8 00000000 E		CALL WriteInt
+ 00000029  BA 00000030 R		MOV   EDX, OFFSET line6	
+ 0000002E  E8 00000000 E		CALL  WriteString
+ 00000033  E8 00000000 E		CALL  ReadInt
+ 00000038  01 05 00000043 R		ADD   res,EAX
 
 
- 0000003E  3B 05 00000047 R			CMP   EAX,mayor
- 00000044  76 05				JNA    X
- 00000046  A3 00000047 R			MOV mayor,EAX
+ 0000003E  3B 05 00000047 R		CMP   EAX,mayor
+ 00000044  76 05			JNA    X
+ 00000046  A3 00000047 R		MOV mayor,EAX
 
 
  0000004B			X:	
-
-					
  0000004B  FF 05 0000004B R		INC cont
  00000051  E2 C2			loop L1
 
@@ -105,7 +103,7 @@ Ejercicio 1             (ej1.asm)			     Page 1 - 1
  00000091  E8 00000000 E   *	    call   ExitProcess
  00000096			main ENDP
 				END main
-Microsoft (R) Macro Assembler Version 6.15.8803		    10/22/14 09:10:53
+Microsoft (R) Macro Assembler Version 6.15.8803		    11/05/14 02:37:59
 Ejercicio 1             (ej1.asm)			     Symbols 2 - 1
 
 
