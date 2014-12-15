@@ -28,14 +28,14 @@ main PROC
 	;Procedimiento Principal	
 		
 	CALL leeHex
-	mov edx, OFFSET texto4
+	mov EDX, OFFSET texto4
     call WriteString
     call Crlf
 	MOV EDX, OFFSET texto5 ;incial
 	CALL WriteString 
 	call Crlf
 	
-	mov ecx,nVal
+	mov ECX,nVal
 	MOV EDI,nVal
 	DEC EDI
 	IMUL EDI,4
@@ -46,12 +46,12 @@ main PROC
 	MOV EDX, OFFSET texto6 ;deplazados
 	CALL WriteString 
 	call Crlf
-	mov ecx,nVal
+	mov ECX,nVal
 	CALL DisplayArray
 	
 	;Imprime adios
 	call Crlf
-	mov edx,OFFSET adios
+	mov EDX,OFFSET adios
 	CALL Writestring
 	
 	exit
@@ -134,7 +134,7 @@ DisplayArray PROC
 L1:
 	  mov  eax,arrLista[esi]
 	  call WriteBin	; display binary bits
-       call Crlf
+      call Crlf
 	  sub  esi,4
 	Loop L1
 	call Crlf

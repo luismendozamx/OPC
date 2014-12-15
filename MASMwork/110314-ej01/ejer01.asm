@@ -1,0 +1,28 @@
+TITLE ejer01.asm
+
+INCLUDE Irvine32.inc
+
+.DATA
+arr1 SDWORD 11,10,12,14,13,10,12
+arr2 SDWORD 209,-131,-96,160,-221,85,-49
+res SDWORD ?
+
+.CODE
+main PROC
+
+	MOV ECX, LENGTHOF arr1
+	MOV ESI, 0
+
+L1: 
+	MOV res, EAX
+	MOV EAX, arr1[ESI]
+	MUL arr2[ESI]
+	ADD res, EDX
+	LOOP L1
+		
+	EXIT
+	
+main ENDP
+
+END main
+	
